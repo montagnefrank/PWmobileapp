@@ -28,30 +28,6 @@ $('.userlink').click(function () {
     });
 });
 
-$(document).on('click', '#submitlogin', function (e) {
-    e.preventDefault;
-    var username = $('#username_input').val(), pass = $('#password_input').val();
-    if (username == '' || pass == '') {
-        $('#username_input, #password_input').attr('placeholder', 'Complete this field');
-        $('#username_input, #password_input').addClass('alerted');
-    } else {
-
-        $.ajax({
-            url: "http://parkedwashed.burtonservers.com/login.php?username=" + username + "&password=" + pass,
-            dataType: "jsonp",
-            type: "GET",
-            jsonpCallback: 'validateLogin', // add this property
-            contentType: "application/json; charset=utf-8",
-            success: function (result, status, xhr) {
-                console.log('Ajax response success');
-            },
-            error: function (xhr, status, error) {
-                console.log("Ajax Error Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
-            }
-        });
-    }
-});
-
 $(document).on('click', '#submitneuser', function (e) {
     e.preventDefault;
     var fullname = $('#fullname_input').val(),
@@ -69,6 +45,9 @@ $(document).on('click', '#submitneuser', function (e) {
             $(".msglink").html('Must fill all fields');
             console.log('empty fields');
             $(".msglink").slideDown("slow");
+            setTimeout(function () {
+                $(".msglink").slideUp(1800);
+            }, 4000);
         });
         return false;
     } else {
@@ -78,6 +57,9 @@ $(document).on('click', '#submitneuser', function (e) {
                 $(".msglink").html('Passwords must match');
                 console.log('Passwords must match');
                 $(".msglink").slideDown("slow");
+                setTimeout(function () {
+                    $(".msglink").slideUp(800);
+                }, 4000);
             });
             return false;
         }
@@ -88,6 +70,7 @@ $(document).on('click', '#submitneuser', function (e) {
             jsonpCallback: 'validateReg', // add this property
             contentType: "application/json; charset=utf-8",
             success: function (result, status, xhr) {
+                validateLogin(result);
                 console.log('Ajax response success');
             },
             error: function (xhr, status, error) {
@@ -134,8 +117,12 @@ function validateLogin(data) {
         $(" .msglink").slideUp(800, function () {
             $(".msglink").html('login invalid');
             $(".msglink").slideDown(800);
+            $(".msglink").fadeIn(800);
             console.log('login usuario fail');
             console.log(data);
+            setTimeout(function () {
+                $(".msglink").slideUp(1800);
+            }, 4000);
         });
     }
 }
@@ -155,14 +142,19 @@ function validateReg(data) {
             $(".msglink").slideDown(800);
             console.log('Reg user fail');
             console.log(data);
+            setTimeout(function () {
+                $(".msglink").slideUp(800);
+            }, 4000);
         });
-    } 
-    else {
+    } else {
         $(" .msglink").slideUp(800, function () {
             $(".msglink").html('registration invalid');
             $(".msglink").slideDown(800);
             console.log('Reg user fail');
             console.log(data);
+            setTimeout(function () {
+                $(".msglink").slideUp(1800);
+            }, 4000);
         });
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+ob_start(); // Record output
+
 require ("conn.php");
 $jsonp = array();
 
@@ -21,9 +23,16 @@ if ($_GET) {
         if (($rows != 0) && (strcmp($row["nombreUsuario"], $username) == 0) && ($row['passwordUsuario'] === $password)) {
 
             $jsonp['scriptResp'] = "match";
+            $output = ob_get_contents();
+            ob_end_clean();
+            $jsonp['output'] = $output;
             echo $_GET['callback'] . '(' . json_encode($jsonp) . ')';
         } else {
-            echo $_GET['callback'] . '(' . "{'scriptResp' : 'noMatch'}" . ')';
+            $jsonp['scriptResp'] = "noMatch";
+            $output = ob_get_contents();
+            ob_end_clean();
+            $jsonp['output'] = $output;
+            echo $_GET['callback'] . '(' . json_encode($jsonp) . ')';
         }
     }
 
@@ -41,7 +50,11 @@ if ($_GET) {
         $row_cnt = $result->num_rows;
 
         if ($row_cnt > 0) {
-            echo $_GET['callback'] . '(' . "{'scriptResp' : 'userAlreadyInDB'}" . ')';
+            $jsonp['scriptResp'] = "userAlreadyInDB";
+            $output = ob_get_contents();
+            ob_end_clean();
+            $jsonp['output'] = $output;
+            echo $_GET['callback'] . '(' . json_encode($jsonp) . ')';
         } else {
             $val_select = "INSERT INTO usuario("
                     . "passwordUsuario,nombreUsuario,idPerfil,phoneUsuario,fechaingresoUsuario,nombresUsuario,apellidosUsuario,idEstablecimiento,statusUsuario,temaUsuario"
@@ -56,12 +69,25 @@ if ($_GET) {
                 $jsonp['user']['vehicle'] = $vehicle;
                 $jsonp['user']['plate'] = $plate;
                 $jsonp['user']['username'] = $username;
+
+                $output = ob_get_contents();
+                ob_end_clean();
+                $jsonp['output'] = $output;
                 echo $_GET['callback'] . '(' . json_encode($jsonp) . ')';
             } else {
-                echo $_GET['callback'] . '(' . "{'scriptResp' : 'failuserReg'}" . ')';
+
+                $jsonp['scriptResp'] = "failuserReg";
+                $output = ob_get_contents();
+                ob_end_clean();
+                $jsonp['output'] = $output;
+                echo $_GET['callback'] . '(' . json_encode($jsonp) . ')';
             }
         }
     }
 } else {
-    echo $_GET['callback'] . '(' . "{'scriptResp' : 'silent'}" . ')';
+    $jsonp['scriptResp'] = "silent";
+    $output = ob_get_contents();
+    ob_end_clean();
+    $jsonp['output'] = $output;
+    echo $_GET['callback'] . '(' . json_encode($jsonp) . ')';
 }
