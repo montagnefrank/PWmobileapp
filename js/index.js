@@ -1,4 +1,4 @@
-$('#login-button').click(function () {
+$(document).on('click', '#login-button', function () {
     $('#login-button').fadeOut("slow", function () {
         $("#container").fadeIn();
         TweenMax.from("#container", .4, {scale: 0, ease: Sine.easeInOut});
@@ -14,10 +14,17 @@ $(".close-btn").click(function () {
     });
 });
 
-/* Forgotten Password */
+/* newuser Password */
 $('.guestlink').click(function () {
     $("#container, #user_container").fadeOut(function () {
         $("#reg_container").fadeIn();
+    });
+});
+
+/* already Password */
+$('.userlink').click(function () {
+    $("#user_container, #reg_container").fadeOut(function () {
+        $("#container").fadeIn();
     });
 });
 

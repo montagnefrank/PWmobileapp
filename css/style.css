@@ -57,7 +57,7 @@ img{
   bottom: 0;
   margin: auto;
   width: 80vw;
-  height: 95vh;
+  height: 90vh;
   border-radius: 5px;
   background: rgba(3,3,3,0.25);
   box-shadow: 1px 1px 50px #000;
@@ -74,8 +74,8 @@ img{
   right: 0;
   bottom: 0;
   margin: auto;
-  width: 50vh;
-  height: 95vh;
+  width: 80vw;
+  height: 90vh;
   border-radius: 5px;
   background: rgba(3,3,3,0.25);
   box-shadow: 1px 1px 50px #000;
@@ -176,8 +176,12 @@ a{
   background: rgba(0, 255, 255, 0.0);
 }
 
+.userlink {
+  background: rgba(0, 255, 255, 0.0);
+}
+
 .msglink {
-  background: rgba(0, 255, 255, 0.3);
+  background: rgba(0, 204, 204, 1);
   display: none;
 }
 
@@ -261,10 +265,6 @@ a:hover{
   background: rgba(3,3,3,0.25);
   box-shadow: 1px 1px 50px #000;
   display: none;
-}
-
-.orange-btn{
-  background: rgba(87,198,255,.5);
 }
 
 
