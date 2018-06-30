@@ -8,11 +8,11 @@
     <!-- versionCode is optional and Android only -->
 
     <name>PW mobile APP</name>
-
+    
     <description>
         Waterless car wash service on the go
     </description>
-
+    <icon src="img/login-w-icon.png" />
     <author href="https://github.com/montagnefrank/" email="burton@burtonservers.com">
         Burton Technology
     </author>
