@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+    <head>
+        <meta charset="UTF-8">
+        <title>LogIn Form</title>
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div id="login-button">
+            <img src="img/login-w-icon.png" />
+        </div>
+        <div id="container">
+            <img src="img/logorec.png" />
+            <span class="close-btn">
+                <img src="img/circle_close_delete_-128.png" />
+            </span>
+            <form id="loginForm">
+                <input type="text" name="username" placeholder="Username" id="username_input">
+                <input type="password" name="password" placeholder="Password" id="password_input">
+                <a href="#" id="submitlogin">Log in</a>
+                <a href="#" class="guestlink">Guest user</a>
+                <a href="#" class="msglink">Alert</a>
+            </form>
+        </div>
+        <div id="user_container">
+            <h1></h1>
+            <img src="img/login.jpg"  style="width: 80%; margin-bottom: 16px;"/>
+            <h2>info@parkedwashed.com</h2>
+        </div>
+        <div id="reg_container">
+            <img src="img/logorec.png" />
+            <span class="close-btn">
+                <img src="img/circle_close_delete_-128.png" />
+            </span>
+            <form id="newuserForm">
+                <input type="text" name="fullname" placeholder="Full Name" id="fullname_input">
+                <input type="text" name="phone" placeholder="Phone number" id="phone_input">
+                <input type="text" name="vehicle" placeholder="Vehicle Model" id="vehicle_input">
+                <input type="text" name="plate" placeholder="Reg. Plate" id="plate_input">
+                <input type="text" name="username" placeholder="Username" id="newusername_input">
+                <input type="password" name="password" placeholder="Password" id="newpassword_input">
+                <input type="password" name="confirmpassword" placeholder="Confirm password" id="confpassword_input">
+                <a href="#" id="submitneuser">Sing up</a>
+                <a href="#" class="guestlink">Sing in</a>
+                <a href="#" class="msglink">Alert</a>
+            </form>
+        </div>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js'></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script  src="js/index.js"></script>
+    </body>
+</html>
