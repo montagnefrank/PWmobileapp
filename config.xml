@@ -16,5 +16,9 @@
     <author href="https://github.com/montagnefrank/" email="burton@burtonservers.com">
         Burton Technology
     </author>
-
+    <gap:plugin name="cordova-plugin-geolocation" source="npm" />
+    <gap:plugin name="cordova-plugin-whitelist" version="1.1.0" source="npm" />
+    <access origin="*" launch-external="yes" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
 </widget>
