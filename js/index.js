@@ -9,24 +9,38 @@ $(document).on('click', '#login-button', function () {
 });
 
 $(".close-btn").click(function () {
-    TweenMax.from("#container", .4, {scale: 1, ease: Sine.easeInOut});
-    TweenMax.to("#container", .4, {left: "0px", scale: 0, ease: Sine.easeInOut});
-    $("#container, #user_container , #reg_container, .msglink").fadeOut(800, function () {
+    $.when(
+            TweenMax.from("#container", .4, {scale: 1, ease: Sine.easeInOut}),
+            TweenMax.to("#container", .4, {left: "0px", scale: 0, ease: Sine.easeInOut}),
+            $("#container, #user_container , #reg_container, .msglink").fadeOut(800)
+            ).then(function () {
         $("#login-button").fadeIn(800);
     });
 });
 
 /* newuser Password */
 $('.guestlink').click(function () {
-    $("#container, #user_container").fadeOut(function () {
-        $("#reg_container").fadeIn();
+    $.when(
+            TweenMax.from("#container", .4, {scale: 1, ease: Sine.easeInOut}),
+            TweenMax.to("#container", .4, {left: "0px", scale: 0, ease: Sine.easeInOut}),
+            $("#container, #user_container , #reg_container, .msglink").fadeOut(800)
+            ).then(function () {
+        $("#reg_container").fadeIn(800);
+        TweenMax.from("#reg_container", .4, {scale: 0, ease: Sine.easeInOut});
+        TweenMax.to("#reg_container", .4, {scale: 1, ease: Sine.easeInOut});
     });
 });
 
 /* already Password */
 $('.userlink').click(function () {
-    $("#user_container, #reg_container").fadeOut(function () {
-        $("#container").fadeIn();
+    $.when(
+            TweenMax.from("#reg_container", .4, {scale: 1, ease: Sine.easeInOut}),
+            TweenMax.to("#reg_container", .4, {left: "0px", scale: 0, ease: Sine.easeInOut}),
+            $("#reg_container, .msglink").fadeOut(800)
+            ).then(function () {
+        $("#container").fadeIn(800);
+        TweenMax.from("#container", .4, {scale: 0, ease: Sine.easeInOut});
+        TweenMax.to("#container", .4, {scale: 1, ease: Sine.easeInOut});
     });
 });
 
@@ -43,25 +57,29 @@ $(document).on('click', '#submitneuser', function (e) {
 
     if (fullname == '' || vehicle == '' || plate == '' || username == '' || pass == '') {
         event.preventDefault();
-        $.when($(".msglink").slideUp("slow")).then(function () {
-            $(".msglink").html('Must fill all fields');
+        $.when(
+                $(".msglink").hide()
+                ).then(function () {
             console.log('empty fields');
-            $(".msglink").slideDown("slow");
+            $(".msglink").show();
             setTimeout(function () {
-                $(".msglink").slideUp(1800);
+                $(".msglink").hide();
             }, 4000);
+            $(".msglink").html('Must fill all fields');
         });
         return false;
     } else {
         if (pass !== passconf) {
             event.preventDefault();
-            $.when($(".msglink").slideUp("slow")).then(function () {
-                $(".msglink").html('Passwords must match');
+            $.when(
+                    $(".msglink").hide()
+                    ).then(function () {
                 console.log('Passwords must match');
-                $(".msglink").slideDown("slow");
+                $(".msglink").show();
                 setTimeout(function () {
-                    $(".msglink").slideUp(800);
+                    $(".msglink").hide();
                 }, 4000);
+                $(".msglink").html('Passwords must match');
             });
             return false;
         }
@@ -72,7 +90,6 @@ $(document).on('click', '#submitneuser', function (e) {
             jsonpCallback: 'validateReg', // add this property
             contentType: "application/json; charset=utf-8",
             success: function (result, status, xhr) {
-                validateLogin(result);
                 console.log('Ajax response success');
             },
             error: function (xhr, status, error) {
@@ -109,55 +126,63 @@ $(document).on('click', '#submitlogin', function (e) {
 
 function validateLogin(data) {
     if (data.scriptResp == 'match') {
-        TweenMax.from("#container", .4, {scale: 1, ease: Sine.easeInOut});
-        TweenMax.to("#container", .4, {left: "0px", scale: 0, ease: Sine.easeInOut});
-        $("#container, #user_container").fadeOut(800, function () {
-            $("#user_container").fadeIn(800);
+        $.when(
+                TweenMax.from("#container", .4, {scale: 1, ease: Sine.easeInOut}),
+                TweenMax.to("#container", .4, {left: "0px", scale: 0, ease: Sine.easeInOut}),
+                $("#container, .msglink").fadeOut(800)
+                ).then(function () {
             $("#user_container h1").html('Welcome ' + data.nombresUsuario);
             console.log('login usuario exitoso');
+            $("#user_container").fadeIn(800);
         });
     } else {
-        $(" .msglink").slideUp(800, function () {
-            $(".msglink").html('login invalid');
-            $(".msglink").slideDown(800);
-            $(".msglink").fadeIn(800);
+        $.when(
+                $(".msglink").hide()
+                ).then(function () {
             console.log('login usuario fail');
-            console.log(data);
+            $(".msglink").show();
             setTimeout(function () {
-                $(".msglink").slideUp(1800);
+                $(".msglink").hide();
             }, 4000);
+            $(".msglink").html('login failed');
         });
+        return false;
     }
 }
 function validateReg(data) {
     if (data.scriptResp == 'regsuccess') {
-        TweenMax.from("#container", .4, {scale: 1, ease: Sine.easeInOut});
-        TweenMax.to("#container", .4, {left: "0px", scale: 0, ease: Sine.easeInOut});
-        $("#container, #reg_container").fadeOut(800, function () {
-            $("#user_container").fadeIn(800);
+        $.when(
+                TweenMax.from("#reg_container", .4, {scale: 1, ease: Sine.easeInOut}),
+                TweenMax.to("#reg_container", .4, {left: "0px", scale: 0, ease: Sine.easeInOut}),
+                $("#reg_container").fadeOut(800)
+                ).then(function () {
             $("#user_container h1").html('New User ' + data.user.fullname);
             console.log('login usuario exitoso');
+            $("#user_container").fadeIn(800);
         });
     }
     if (data.scriptResp == 'userAlreadyInDB') {
-        $(" .msglink").slideUp(800, function () {
+        $.when(
+                $(".msglink").hide()
+                ).then(function () {
+            console.log('Reg user fail');
+            $(".msglink").show();
+            setTimeout(function () {
+                $(".msglink").hide();
+            }, 4000);
             $(".msglink").html('username taken');
-            $(".msglink").slideDown(800);
-            console.log('Reg user fail');
-            console.log(data);
-            setTimeout(function () {
-                $(".msglink").slideUp(800);
-            }, 4000);
         });
-    } else {
-        $(" .msglink").slideUp(800, function () {
-            $(".msglink").html('registration invalid');
-            $(".msglink").slideDown(800);
+    } 
+    if (data.scriptResp != 'regsuccess' && data.scriptResp != 'userAlreadyInDB'){
+        $.when(
+                $(".msglink").hide()
+                ).then(function () {
             console.log('Reg user fail');
-            console.log(data);
+            $(".msglink").show();
             setTimeout(function () {
-                $(".msglink").slideUp(1800);
+                $(".msglink").hide();
             }, 4000);
+            $(".msglink").html('registration invalid');
         });
     }
 }
