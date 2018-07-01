@@ -2,6 +2,7 @@
 
 dev/
 api/
+api/api.php
 nbproject/
 www.zip
 my.cnf
