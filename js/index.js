@@ -61,8 +61,8 @@ $(document).on('click', '#submitneuser', function (e) {
             plate = $('#plate_input').val(),
             username = $('#newusername_input').val(),
             pass = $('#newpassword_input').val(),
-            passconf = $('#confpassword_input').val();
-
+            passconf = $('#confpassword_input').val(),
+            self = this;
 
     if (fullname == '' || vehicle == '' || plate == '' || username == '' || pass == '') {
         event.preventDefault();
@@ -92,6 +92,8 @@ $(document).on('click', '#submitneuser', function (e) {
             });
             return false;
         }
+        $(self).find('.loadingimg').show();
+        $(self).find('.titlebtn').hide();
         $.ajax({
             url: "http://parkedwashed.burtonservers.com/api.php?meth=reg&fullname=" + fullname + "&phone=" + phone + "&vehicle=" + vehicle + "&plate=" + plate + "&username=" + username + "&password=" + pass,
             dataType: "jsonp",
@@ -100,9 +102,13 @@ $(document).on('click', '#submitneuser', function (e) {
             contentType: "application/json; charset=utf-8",
             success: function (result, status, xhr) {
                 console.log('Ajax response success');
+                $(self).find('.loadingimg').hide();
+                $(self).find('.titlebtn').show();
             },
             error: function (xhr, status, error) {
-                console.log("Ajax Error Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                console.log("Ajax Error Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                $(self).find('.loadingimg').hide();
+                $(self).find('.titlebtn').show();
             }
         });
     }
@@ -110,12 +116,15 @@ $(document).on('click', '#submitneuser', function (e) {
 
 $(document).on('click', '#submitlogin', function (e) {
     e.preventDefault;
-    var username = $('#username_input').val(), pass = $('#password_input').val();
+    var username = $('#username_input').val(), pass = $('#password_input').val(),
+            self = this;;
     if (username == '' || pass == '') {
         $('#username_input, #password_input').attr('placeholder', 'Complete this field');
         $('#username_input, #password_input').addClass('alerted');
     } else {
-
+        
+        $(self).find('.loadingimg').show();
+        $(self).find('.titlebtn').hide();
         $.ajax({
             url: "http://parkedwashed.burtonservers.com/api.php?meth=login&username=" + username + "&password=" + pass,
             dataType: "jsonp",
@@ -124,9 +133,13 @@ $(document).on('click', '#submitlogin', function (e) {
             contentType: "application/javascript; charset=utf-8",
             success: function (result, status, xhr) {
                 console.log('Ajax response success');
+                $(self).find('.loadingimg').hide();
+                $(self).find('.titlebtn').show();
             },
             error: function (xhr, status, error) {
-                console.log("Ajax Error Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                console.log("Ajax Error Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                $(self).find('.loadingimg').hide();
+                $(self).find('.titlebtn').show();
             }
         });
         console.log("http://parkedwashed.burtonservers.com/api.php?meth=login&username=" + username + "&password=" + pass);
