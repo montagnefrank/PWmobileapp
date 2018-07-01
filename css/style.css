@@ -18,8 +18,8 @@ img{
 #login-button{
     cursor: pointer;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -200px;
+    left: 0px;
     right: 0;
     bottom: 0;
     padding: 30px;
@@ -27,11 +27,28 @@ img{
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: rgba(3,3,3,.8);
+    background: rgba(3,3,3,.4);
     overflow: hidden;
-    opacity: 0.4;
+    opacity: 1;
     box-shadow: 10px 10px 30px #000;
+}
 
+#guest-button{
+    cursor: pointer;
+    position: absolute;
+    top: 200px;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+    padding: 30px;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(3,3,3,.4);
+    overflow: hidden;
+    opacity: 1;
+    box-shadow: 10px 10px 30px #000;
 }
 
 /* Login container */

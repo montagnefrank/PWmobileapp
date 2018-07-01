@@ -1,10 +1,19 @@
 $(document).on('click', '#login-button', function () {
     $.when(
-            $('#login-button').fadeOut(1200)
+            $('#login-button,#guest-button').fadeOut(1200)
             ).then(function () {
         $("#container").fadeIn();
         TweenMax.from("#container", .4, {scale: 0, ease: Sine.easeInOut});
         TweenMax.to("#container", .4, {scale: 1, ease: Sine.easeInOut});
+    });
+});
+$(document).on('click', '#guest-button', function () {
+    $.when(
+            $('#login-button,#guest-button').fadeOut(1200)
+            ).then(function () {
+        $("#reg_container").fadeIn();
+        TweenMax.from("#reg_container", .4, {scale: 0, ease: Sine.easeInOut});
+        TweenMax.to("#reg_container", .4, {scale: 1, ease: Sine.easeInOut});
     });
 });
 
@@ -14,7 +23,7 @@ $(".close-btn").click(function () {
             TweenMax.to("#container", .4, {left: "0px", scale: 0, ease: Sine.easeInOut}),
             $("#container, #user_container , #reg_container, .msglink").fadeOut(800)
             ).then(function () {
-        $("#login-button").fadeIn(800);
+        $("#login-button,#guest-button").fadeIn(800);
     });
 });
 
@@ -172,8 +181,8 @@ function validateReg(data) {
             }, 4000);
             $(".msglink").html('username taken');
         });
-    } 
-    if (data.scriptResp != 'regsuccess' && data.scriptResp != 'userAlreadyInDB'){
+    }
+    if (data.scriptResp != 'regsuccess' && data.scriptResp != 'userAlreadyInDB') {
         $.when(
                 $(".msglink").hide()
                 ).then(function () {
