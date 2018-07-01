@@ -1,8 +1,13 @@
 <?php
+////////////////////////////////////////////////////////////////////////////////////////DEBUG EN PANTALLA
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+
+header('Content-type: application/javascript; charset=utf-8');
 ob_start(); // Record output
 
-require ("conn.php");
+require ("assets/scripts/conn.php");
 $jsonp = array();
 
 if ($_GET) {
@@ -57,9 +62,9 @@ if ($_GET) {
             echo $_GET['callback'] . '(' . json_encode($jsonp) . ')';
         } else {
             $val_select = "INSERT INTO usuario("
-                    . "passwordUsuario,nombreUsuario,idPerfil,phoneUsuario,fechaingresoUsuario,nombresUsuario,apellidosUsuario,idEstablecimiento,statusUsuario,temaUsuario"
+                    . "passwordUsuario,nombreUsuario,idPerfil,phoneUsuario,fechaingresoUsuario,nombresUsuario,vehiculoUsuario,placaUsuario,statusUsuario,temaUsuario,panelUsuario"
                     . ")  VALUES  ('" .
-                    $password . "','" . $username . "','0','" . $phone . "','" . date("Y-m-d") . "','" . $fullname . "','0','0','1','dark')";
+                    $password . "','" . $username . "','0','" . $phone . "','" . date("Y-m-d") . "','" . $fullname . "','" . $vehicle . "','" . $plate . "','1','dark','users')";
             $val_result = $conn->query($val_select) or die($_GET['callback'] . '(' . "{'scriptResp' : 'insertuserFail'}" . ')');
 
             if ($val_result) {

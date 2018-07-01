@@ -1,6 +1,7 @@
 # Private files
 
 dev/
+api/
 nbproject/
 www.zip
 my.cnf

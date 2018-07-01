@@ -1,5 +1,7 @@
 $(document).on('click', '#login-button', function () {
-    $('#login-button').fadeOut("slow", function () {
+    $.when(
+            $('#login-button').fadeOut(1200)
+            ).then(function () {
         $("#container").fadeIn();
         TweenMax.from("#container", .4, {scale: 0, ease: Sine.easeInOut});
         TweenMax.to("#container", .4, {scale: 1, ease: Sine.easeInOut});
@@ -93,7 +95,7 @@ $(document).on('click', '#submitlogin', function (e) {
             dataType: "jsonp",
             type: "GET",
             jsonpCallback: 'validateLogin', // add this property
-            contentType: "application/json; charset=utf-8",
+            contentType: "application/javascript; charset=utf-8",
             success: function (result, status, xhr) {
                 console.log('Ajax response success');
             },
@@ -101,6 +103,7 @@ $(document).on('click', '#submitlogin', function (e) {
                 console.log("Ajax Error Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
             }
         });
+        console.log("http://parkedwashed.burtonservers.com/api.php?meth=login&username=" + username + "&password=" + pass);
     }
 });
 
