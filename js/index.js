@@ -155,7 +155,7 @@ function validateLogin(data) {
                 ).then(function () {
             $("#user_container h1").html('Welcome ' + data.nombresUsuario);
             console.log('login usuario exitoso');
-            $("#user_container").fadeIn(800);
+            $("html").html(' ');
         });
     } else {
         $.when(
