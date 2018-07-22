@@ -306,3 +306,20 @@ a:hover{
     width: 20px;
     display: none;
 }
+
+
+
+#sliderslick {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.sliderimg{
+    border: 2px solid coral;
+    border-radius: 500px;
+    width: 90%;
+}
+
+.halfw{
+    width: 30%;
+}

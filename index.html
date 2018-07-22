@@ -8,6 +8,16 @@
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+        <!--SLIDERS-->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+        <!--BOOTSTRAP-->
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
         <link rel="stylesheet" href="css/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -46,9 +56,22 @@
             </span>
             <form id="newuserForm">
                 <input type="text" name="fullname" placeholder="Full Name" id="fullname_input">
-                <input type="text" name="phone" placeholder="Phone number" id="phone_input">
-                <input type="text" name="vehicle" placeholder="Choose Your Ride" id="vehicle_input">
-                <input type="text" name="plate" placeholder="License Plate" id="plate_input">
+                <div class="col-sm-6">
+                    <input type="text" name="phone" placeholder="+1" id="phone_input">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" name="plate" placeholder="License Plate" id="plate_input">
+                </div>
+                <input readonly="readonly" type="text" name="vehicle" placeholder="Select Your Ride" id="vehicle_input">
+                <div data-slick='{"slidesToShow": 4, "slidesToScroll": 1}' id="sliderslick">
+                    <div><img class="sliderimg" src="img/cars/14.jpg" vehicle="Vehicle Model 1"/></div>
+                    <div><img class="sliderimg" src="img/cars/15.jpg" vehicle="Vehicle Model 2"/></div>
+                    <div><img class="sliderimg" src="img/cars/16.jpg" vehicle="Vehicle Model 3"/></div>
+                    <div><img class="sliderimg" src="img/cars/17.jpg" vehicle="Vehicle Model 4"/></div>
+                    <div><img class="sliderimg" src="img/cars/18.jpg" vehicle="Vehicle Model 5"/></div>
+                    <div><img class="sliderimg" src="img/cars/19.jpg" vehicle="Vehicle Model 6"/></div>
+                    <div><img class="sliderimg" src="img/cars/20.jpg" vehicle="Vehicle Model 7"/></div>
+                </div>
                 <input type="text" name="username" placeholder="Username" id="newusername_input">
                 <input type="password" name="password" placeholder="Password" id="newpassword_input">
                 <input type="password" name="confirmpassword" placeholder="Confirm password" id="confpassword_input">
@@ -57,8 +80,18 @@
                 <a href="#" class="msglink">Alert</a>
             </form>
         </div>
+
         <script src='js/TweenMax.min.js'></script>
-        <script src='js/jquery.min.js'></script>
+        <script src='js/jquery.min.js'></script>   
+
+        <!--SLICK-->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+        <!--BOOTSTRAP-->
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
         <script  src="js/index.js"></script>
     </body>
 </html>

@@ -1,123 +1,146 @@
-<!doctype html>
-<html>
-    <head><base href="/src/">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Chankya App - Best Angular 6 Admin Theme</title>
+        <title>ParkedWashed</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <style>
-            /* Animations  */
 
-            .fade-in-up,
-            .chk-block,
-            .card,
-            .chk-full-block {
-                animation-duration: 2s;
-                animation-name: fadeUp;
-            }
+        <!-- v4.0.0 -->
+        <link rel="stylesheet" href="dist/bootstrap/css/bootstrap.min.css">
 
-            @-webkit-keyframes fadeLeft {
-                0% {
-                    opacity: 0;
-                    -webkit-transform: translateX(50px);
-                    transform: translateX(50px);
-                }
-                100% {
-                    opacity: 1;
-                    -webkit-transform: translateX(0px);
-                    transform: translateX(0px);
-                }
-            }
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="dist/img/favicon-16x16.png">
 
-            @keyframes fadeLeft {
-                0% {
-                    opacity: 0;
-                    -webkit-transform: translateX(50px);
-                    transform: translateX(50px);
-                }
-                100% {
-                    opacity: 1;
-                    -webkit-transform: translateX(0px);
-                    transform: translateX(0px);
-                }
-            }
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
-            @-webkit-keyframes fadeUp {
-                0% {
-                    opacity: 0;
-                    -webkit-transform: translateY(50px);
-                    transform: translateY(50px);
-                }
-                100% {
-                    opacity: 1;
-                    -webkit-transform: translateY(0px);
-                    transform: translateY(0px);
-                }
-            }
+        <!-- Theme style -->
+        <link rel="stylesheet" href="dist/css/style.css">
+        <link rel="stylesheet" href="dist/css/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="dist/css/et-line-font/et-line-font.css">
+        <link rel="stylesheet" href="dist/css/themify-icons/themify-icons.css">
+        <link rel="stylesheet" href="dist/css/simple-lineicon/simple-line-icons.css">
 
-            @keyframes fadeUp {
-                0% {
-                    opacity: 0;
-                    -webkit-transform: translateY(30px);
-                    transform: translateY(30px);
-                }
-                100% {
-                    opacity: 1;
-                    -webkit-transform: translateY(0px);
-                    transform: translateY(0px);
-                }
-            }
-
-            @-webkit-keyframes jumpUp {
-                0% {
-                    -webkit-transform: scale(0.5) translate(70px, 70px);
-                    transform: scale(0.5) translate(70px, 70px);
-                }
-                80% {
-                    -webkit-transform: scale(1.1) translate(-10px, -10px);
-                    transform: scale(1.1) translate(-10px, -10px);
-                }
-                100% {
-                    -webkit-transform: scale(1) translate(0px);
-                    transform: scale(1) translate(0px);
-                }
-            }
-
-            @keyframes jumpUp {
-                0% {
-                    -webkit-transform: scale(0.5) translate(70px, 70px);
-                    transform: scale(0.5) translate(70px, 70px);
-                }
-                80% {
-                    -webkit-transform: scale(1.1) translate(-10px, -10px);
-                    transform: scale(1.1) translate(-10px, -10px);
-                }
-                100% {
-                    -webkit-transform: scale(1) translate(0px);
-                    transform: scale(1) translate(0px);
-                }
-            }
-        </style>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css.css?family=Roboto:300,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-        <script src="https://cdn.polyfill.io/v2/polyfill.js?features=Intl.~locale.en"></script>
-        <link rel="stylesheet" href="styles.9150505420689f6b55e5.css">
     </head>
-    <body>
-    <chankya-app>
-        <div class="block">
-            <div class="loading">
-                <span class="ball1"></span>
-                <span class="ball2"></span>
+    <body class="skin-blue sidebar-mini">
+        <div class="wrapper boxed-wrapper">
+            <header class="main-header"> 
+                <a href="index.html" class="logo blue-bg"> 
+                    <span class="logo-mini"><img src="dist/img/logo.png" alt=""></span> 
+                    <span class="logo-lg"><img src="dist/img/logo.png" alt=""></span> </a> 
+                <nav class="navbar blue-bg navbar-static-top"> 
+                    <ul class="nav navbar-nav pull-left">
+                        <li><a class="sidebar-toggle" data-toggle="push-menu" href="#"></a> </li>
+                    </ul>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown messages-menu"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-bell-o"></i>
+                                    <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    
+                                    <!--NOTIFICATIONS HEADER WINDOW-->
+                                    <li class="header">Notifications</li>
+                                    <li>
+                                        <ul class="menu">
+                                            <li><a href="#">
+                                                    <div class="pull-left icon-circle green"><i class="fa  fa-star-o"></i></div>
+                                                    <h4>Welcome to Parked&Washed</h4>
+                                                    <p>Set up your garage and start washing!...</p>
+                                                    <p><span class="time">2018-07-15 9:30</span></p>
+                                                </a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="#">Check all Notifications</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/default.png" class="user-image" alt="User Image"> <span class="hidden-xs">Alexander Pierce</span> </a>
+                                <ul class="dropdown-menu">
+                                    
+                                    <!--PROFILE HEADER WINDOW-->
+                                    <li class="user-header">
+                                        <div class="pull-left user-img"><img src="dist/img/default.png" class="img-responsive img-circle userImg" alt="User"></div>
+                                        <p class="text-left userNameEmail">Florence Douglas <small>florence@gmail.com</small> </p>
+                                    </li>
+                                    <li><a href="#"><i class="icon-profile-male"></i> My Profile</a></li>
+                                    <li><a href="#"><i class="icon-wallet"></i> My Balance</a></li>
+                                    <li><a href="#"><i class="icon-envelope"></i> Inbox</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="icon-gears"></i> Account Setting</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="../"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <aside class="main-sidebar"> 
+                <div class="sidebar"> 
+                    <div class="user-panel">
+                        <div class="image text-center"><img src="dist/img/default.png" class="img-circle" alt="User Image"> </div>
+                        <div class="info">
+                            <p>Full Name</p>
+                        </div>
+                    </div>
+                    <ul class="sidebar-menu" data-widget="tree">
+                        <li class="header">MENU</li>
+                        <li><a href="index.html"><i class="icon-home"></i> Home</a></li>
+                        <li class="treeview"> <a href="#"> <i class="fa fa-user-circle"></i> <span>Account</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                            <ul class="treeview-menu">
+                                <li><a href="index-analytics.html"><i class="fa fa-edit"></i> User Profile</a></li>
+                                <li><a href="index-ecommerce.html"><i class="fa fa-list-alt"></i>  Billing</a></li>
+                                <li><a href="index-medical.html"><i class="ti-settings"></i> Settings</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview"> <a href="#"> <i class="fa fa-tint"></i> <span>Service </span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                            <ul class="treeview-menu">
+                                <li><a href="form-elements.html"><i class="fa  fa-car"></i> Garage</a></li>
+                                <li><a href="form-validation.html"><i class="fa fa-plus-circle"></i> New Service</a></li>
+                                <li><a href="form-wizard.html"><i class="fa fa-list-ul"></i> Order History</a></li>
+                            </ul>
+                        </li>
+                        <li> <a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
+                    </ul>
+                </div>
+            </aside>
+            <div class="content-wrapper"> 
+                
+                <div class="content-header sty-one">
+                    <h1 class="mainpaneltitle">Home</h1>
+                    <ol class="breadcrumb breadcrumb_container">
+                        <li><a href="#">P&W</a></li>
+                        <li><i class="fa fa-angle-right"></i> Home</li>
+                    </ol>
+                </div>
+
+                <div class="content">
+
+                </div>
+                <!-- /.content --> 
             </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">Version 1.0</div>
+                <a href="https://www.parkedwashed.com/">Parked & Washed</a> © 2018. All rights reserved.
+            </footer>
         </div>
-    </chankya-app>
-    <script type="text/javascript" src="runtime.3bddbe49f68e6c4752e6.js"></script>
-    <script type="text/javascript" src="polyfills.f640ecac4ad287665b99.js"></script>
-    <script type="text/javascript" src="scripts.431ed14d1626993c2aaa.js"></script>
-    <script type="text/javascript" src="main.ef1c2f4740bed1ba07ce.js"></script>
-</body>
+        <!-- ./wrapper --> 
+
+        <!-- jQuery 3 --> 
+        <script src="dist/js/jquery.min.js"></script> 
+
+        <!-- v4.0.0-alpha.6 --> 
+        <script src="dist/bootstrap/js/bootstrap.min.js"></script> 
+
+        <!-- template --> 
+        <script src="dist/js/adminkit.js"></script> 
+        <script src="dist/js/custom.js"></script> 
+        <script src="dist/plugins/raphael/raphael-min.js"></script> 
+        <script src="dist/plugins/morris/morris.js"></script> 
+        <!--<script src="dist/plugins/functions/dashboard1.js"></script>--> 
+        <!--<script src="dist/plugins/peity/jquery.peity.min.js"></script>--> 
+        <!--<script src="dist/plugins/functions/jquery.peity.init.js"></script>-->
+    </body>
 </html>

@@ -117,12 +117,13 @@ $(document).on('click', '#submitneuser', function (e) {
 $(document).on('click', '#submitlogin', function (e) {
     e.preventDefault;
     var username = $('#username_input').val(), pass = $('#password_input').val(),
-            self = this;;
+            self = this;
+    ;
     if (username == '' || pass == '') {
         $('#username_input, #password_input').attr('placeholder', 'Complete this field');
         $('#username_input, #password_input').addClass('alerted');
     } else {
-        
+
         $(self).find('.loadingimg').show();
         $(self).find('.titlebtn').hide();
         $.ajax({
@@ -155,7 +156,8 @@ function validateLogin(data) {
                 ).then(function () {
             $("#user_container h1").html('Welcome ' + data.nombresUsuario);
             console.log('login usuario exitoso');
-            $("html").html(' ');
+            localStorage.setItem("userData", JSON.stringify(data.userIntel));
+            window.location.href = "/src";
         });
     } else {
         $.when(
@@ -180,7 +182,8 @@ function validateReg(data) {
                 ).then(function () {
             $("#user_container h1").html('New User ' + data.user.fullname);
             console.log('login usuario exitoso');
-            $("#user_container").fadeIn(800);
+            localStorage.setItem("passVar", "pasaste mis bolas");
+            window.location.href = "/src";
         });
     }
     if (data.scriptResp == 'userAlreadyInDB') {
@@ -208,3 +211,19 @@ function validateReg(data) {
         });
     }
 }
+
+setTimeout(function () {
+    $('#sliderslick').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        adaptiveHeight: true,
+        autoplay: true,
+        autoplaySpeed: 1000
+    });
+}, 1000);
+
+$(document).on('click', '.sliderimg', function () {
+    var vehmod = $(this).attr('vehicle');
+    $('#vehicle_input').val(vehmod);
+});
