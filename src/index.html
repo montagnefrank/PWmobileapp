@@ -63,7 +63,7 @@
                                     <li class="footer"><a href="#">Check all Notifications</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/default.png" class="user-image userImg" alt="User Image"> <span class="hidden-xs userFullname">Alexander Pierce</span> </a>
+                            <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/default.png" class="user-image userImg" alt="User Image"> <span class="hidden-xs userFullname">Frank Montagne</span> </a>
                                 <ul class="dropdown-menu">
 
                                     <!--PROFILE HEADER WINDOW-->
@@ -133,16 +133,7 @@
                 <!--SET OF PANELS-->
                 <div class="content">
                     <div class="panel_home mainPanels">
-                        <div class="col-lg-3 col-sm-6 col-xs-12 m-b-3">
-                            <div class="card">
-                                <div class="card-body box-rounded box-gradient"> <span class="info-box-icon bg-transparent"><i class="ti-stats-up text-white"></i></span>
-                                    <div class="info-box-content">
-                                        <h6 class="info-box-text text-white">Home Panel</h6>
-                                        <h1 class="text-white">5,500</h1>
-                                        <span class="progress-description text-white"> 70% Increase in 30 Days </span> </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="panel_garage mainPanels">
                         <div class="row">
@@ -233,6 +224,7 @@
                                                         <div class="form-group">
                                                             <label for="lastName1">User ID:</label>
                                                             <input class="form-control userId_input" type="text">
+                                                            <input class="form-control location_input" type="text">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -240,15 +232,63 @@
                                         </div>
                                         <div class="step-tab-panel" id="step2">
                                             <h1>Car & Location</h1>
-                                            <div data-slick='{"slidesToShow": 1, "slidesToScroll": 1}' id="sliderslick">
-                                                
+
+                                            <label for="">Vehicle:<span class="selectedVeh_name"></span></label>
+                                            <div class="row vehiclesUserWiz">
+
                                             </div>
+                                            <div id="map_small" style="height:400px;"></div>
                                         </div>
                                         <div class="step-tab-panel" id="step3">
-                                            <h1>Billing</h1>
+                                            <h1 style="width: 85vw;">Payment Method</h1>
+                                            <div class="col-lg-12 col-sm-12 col-xs-12 m-b-12">
+                                                <div class="card">
+                                                    <div class="card-body box-rounded box-gradient"> <span class="info-box-icon bg-transparent"><i class="ti-money text-white"></i></span>
+                                                        <div class="info-box-content">
+                                                            <h6 class="info-box-text text-white">Total charged</h6>
+                                                            <h1 class="text-white priceOrderContainer">$35</h1>
+                                                            <span class="progress-description text-white"> 
+                                                                <select class="form-control" id="confPaymentMeth">
+                                                                    <option value="Paypal">Paypal</option>
+                                                                    <option value="Shopify">Shopify</option>
+                                                                    <option value="Wallet">Wallet</option>
+                                                                </select> 
+                                                            </span> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="step-tab-panel" id="step4">
                                             <h1>Confirmation</h1>
+                                            <form id="submitNewOrder">
+                                                <div class="row m-t-2">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="nameConf">Full name :</label>
+                                                            <input readonly="readonly" class="form-control userFullname_input" id="nameConf" type="text">
+                                                            <input readonly="readonly" class="form-control userId_input" id="idnameConf" type="hidden">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="vehConf">Vehicle :</label>
+                                                            <input readonly="readonly" class="form-control vehConf" id="vehConf" type="text">
+                                                            <input readonly="readonly" class="form-control idvehConf" id="idvehConf" type="hidden">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="gpsConf">Location :</label>
+                                                            <input readonly="readonly" class="form-control" id="gpsConf" type="text">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="priceConf">Price :</label>
+                                                            <input readonly="readonly" class="form-control" id="priceConf" type="text">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="methodConf">Payment :</label>
+                                                            <input readonly="readonly" class="form-control" id="methodConf" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                     <div class="step-footer">
@@ -261,16 +301,7 @@
                         </div>
                     </div>
                     <div class="panel_history mainPanels">
-                        <div class="col-lg-3 col-sm-6 col-xs-12 m-b-3">
-                            <div class="card">
-                                <div class="card-body box-rounded box-gradient"> <span class="info-box-icon bg-transparent"><i class="ti-stats-up text-white"></i></span>
-                                    <div class="info-box-content">
-                                        <h6 class="info-box-text text-white">History Panel</h6>
-                                        <h1 class="text-white">5,500</h1>
-                                        <span class="progress-description text-white"> 70% Increase in 30 Days </span> </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="panel_profile mainPanels">
                         <div class="row">
@@ -405,40 +436,13 @@
                         </div>
                     </div>
                     <div class="panel_billing mainPanels">
-                        <div class="col-lg-3 col-sm-6 col-xs-12 m-b-3">
-                            <div class="card">
-                                <div class="card-body box-rounded box-gradient"> <span class="info-box-icon bg-transparent"><i class="ti-stats-up text-white"></i></span>
-                                    <div class="info-box-content">
-                                        <h6 class="info-box-text text-white">Billing Panel</h6>
-                                        <h1 class="text-white">5,500</h1>
-                                        <span class="progress-description text-white"> 70% Increase in 30 Days </span> </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="panel_contact mainPanels">
-                        <div class="col-lg-3 col-sm-6 col-xs-12 m-b-3">
-                            <div class="card">
-                                <div class="card-body box-rounded box-gradient"> <span class="info-box-icon bg-transparent"><i class="ti-stats-up text-white"></i></span>
-                                    <div class="info-box-content">
-                                        <h6 class="info-box-text text-white">Contact Panel</h6>
-                                        <h1 class="text-white">5,500</h1>
-                                        <span class="progress-description text-white"> 70% Increase in 30 Days </span> </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="panel_settings mainPanels">
-                        <div class="col-lg-3 col-sm-6 col-xs-12 m-b-3">
-                            <div class="card">
-                                <div class="card-body box-rounded box-gradient"> <span class="info-box-icon bg-transparent"><i class="ti-stats-up text-white"></i></span>
-                                    <div class="info-box-content">
-                                        <h6 class="info-box-text text-white">Settings Panel</h6>
-                                        <h1 class="text-white">5,500</h1>
-                                        <span class="progress-description text-white"> 70% Increase in 30 Days </span> </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <!-- /.content --> 
@@ -455,6 +459,7 @@
         <script src="dist/js/jquery.min.js"></script> 
 
         <!-- v4.0.0-alpha.6 --> 
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_s9AhhJurXNx1UHeK_6hm6CdSB8AR14c"></script>
         <script src="dist/bootstrap/js/bootstrap.min.js"></script> 
         <script src="dist/plugins/dropify/dropify.min.js"></script> 
         <script src="dist/plugins/formwizard/jquery-steps.js"></script> 

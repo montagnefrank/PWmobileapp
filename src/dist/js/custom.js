@@ -35,6 +35,7 @@ function refreshUser(userData) {
     $('.userMobilePhone').html(user.phoneUsuario);
     $('.userMobilePhone_input').val(user.phoneUsuario);
     $('.userVehicle').html(user.vehiculoUsuario);
+    $('.userVehicle_input').val(user.vehiculoUsuario);
     $('.userPlate').html(user.placaUsuario);
     $('.userPlate_input').val(user.placaUsuario);
     $('.userEmail').html(user.emailUsuario);
@@ -42,7 +43,7 @@ function refreshUser(userData) {
     $('.userStatus').html(user.statusUsuario);
     $('.userRegistration').html(user.fechaingresoUsuario);
     $('.userUsername').html(user.nombreUsuario);
-    $('.userId_input').html(user.idUsuario);
+    $('.userId_input').val(user.idUsuario);
 }
 
 // PANEL NAVIGATION
@@ -143,10 +144,10 @@ function getVehs() {
                                 '              </div>' +
                                 '          </div>' +
                                 '      </div>';
-                        newoVehs += '<div><img class="sliderimg" src="http://parkedwashed.burtonservers.com/assets/img/model/' + element.imgModel + '.jpg" vehicle="' + element.nameVehicle + '"/></div>';
+                        newoVehs += '<img class="vehicleImg" src="http://parkedwashed.burtonservers.com/assets/img/model/' + element.imgModel + '.jpg" vehicle="' + element.nameVehicle + '" vehicleid="' + element.idVehicle + '"/>';
                     });
                     $('#vehiclespanels').html(vehCode);
-                    $('#sliderslick').html(newoVehs);
+                    $('.vehiclesUserWiz').html(newoVehs);
                 }
             } else {
                 console.log(data);
@@ -380,6 +381,7 @@ $(document).ready(function () {
     $(document).on('click', '.testEvent', function () {
 //        refreshUser(); // LOAD USER DETAILS
 //        $('html, body').animate({scrollTop: 0}, 'slow');
+//        console.log($('.location_input').val());
     });
 
     // PANEL NAVIGATION EVENT LISTENER
@@ -389,20 +391,75 @@ $(document).ready(function () {
         loadPanel(self);
     });
 
-    // New Order wizzar
+    // New Order wizzard
     $('#demo').steps({
         onFinish: function () {
-            alert('Wizard Completed');
+            
+            var self = this,
+                    formData = new FormData();
+
+            loadPanel($('.panelBtn[gotopanel=history]').get(0));       
+            formData.append('idUser_newo', $('#idnameConf').val());
+            formData.append('veh_newo', $('#idvehConf').val());
+            formData.append('gps_newo', $('#gpsConf').val());
+            formData.append('price_newo', $('#priceConf').val());
+            formData.append('payment_newo', $('#methodConf').val());
+            formData.append('meth', 'newOrder');
+            $.ajax({
+                url: 'http://parkedwashed.burtonservers.com/api.php',
+                type: 'POST',
+                data: formData,
+                dataType: "json",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.ajaxStatus == 'ok') {
+                        loadPanel($('.panelBtn[gotopanel=history]').get(0));
+                        alertPopup('success', 'Order successfully Placed');
+                        getVehs(); // LIST OF VEHICLES
+                    } else {
+                        console.log(data);
+                    }
+                    $(self).find('.loadingimg').hide();
+                    $(self).find('.titlebtn').show();
+                },
+                error: function (error) {
+                    console.log(error);
+                    $(self).find('.loadingimg').hide();
+                    $(self).find('.titlebtn').show();
+                }
+            });
         }
     });
 
-    //vehiclesSlider
-    $('#sliderslick').slick({
-        dots: false,
-        infinite: true,
-        speed: 300,
-        autoplay: true,
-        autoplaySpeed: 1000
+    // Blur other Vehicles on Tap
+    $(document).on('click', '.vehicleImg', function () {
+        $(this).removeClass('opa40').addClass('selectedVeh').siblings().addClass('opa40 ');
+        $('.selectedVeh_name').html(' ' + $(this).attr('vehicle'));
+    });
+
+    // OBTENEMOS LA UBICACION EN COORDENADAS DEL DISPOSITIVO
+    tryGeolocation();
+
+    // CONFIRMAMOS LOS DATOS ANTES DE CARGAR EL PEDIDO
+    $(document).on('click', 'button[data-direction=next]', function () {
+        if ($('#step4').hasClass("active")) {
+            //VALIDAMOS QUE HAYA SELECCIONADO EL VEHICULO
+            if ($(".selectedVeh").length) {
+                $('#vehConf').val($('.selectedVeh_name').html());
+                $('#idvehConf').val($('.selectedVeh').attr('vehicleid'));
+                $('button[data-direction=finish]').removeAttr('disabled');
+                $('#vehConf').parent().removeClass('has-error');
+            } else {
+                $('#vehConf').parent().addClass('has-error');
+                alertPopup('danger', 'You must select the vehicle');
+                $('button[data-direction=finish]').attr('disabled', 'disabled');
+            }
+            $('#gpsConf').val($('.location_input').val());
+            $('#priceConf').val($('.priceOrderContainer').html());
+            $('#methodConf').val($('#confPaymentMeth').val());
+        }
     });
 });
 
@@ -449,7 +506,65 @@ $(document).ready(function () {
 });
 
 
-//    DEBUG LOCAL STORAGE
+////    DEBUG LOCAL STORAGE
 //for (var key in localStorage) {
 //    console.log(key + ':' + localStorage[key]);
 //}
+
+
+// LOCATION SERVICE
+var apiGeolocationSuccess = function (position) {
+    alert("API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+};
+
+var tryAPIGeolocation = function () {
+    jQuery.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyA_s9AhhJurXNx1UHeK_6hm6CdSB8AR14c", function (success) {
+        var mapOptions = {
+            zoom: 12,
+            scrollwheel: false,
+            center: new google.maps.LatLng(success.location.lat, success.location.lng), // QUITO
+            styles: [{"featureType": "poi", "elementType": "all", "stylers": [{"visibility": "simplified"}, {"hue": "#00afff"}, {"saturation": "100"}, {"lightness": "0"}, {"weight": "4.03"}, {"gamma": "0.50"}]},
+                {"featureType": "poi.business", "elementType": "all", "stylers": [{"visibility": "on"}, {"hue": "#00afff"}, {"weight": "0.50"}]},
+                {"featureType": "road.highway", "elementType": "all", "stylers": [{"visibility": "on"}, {"hue": "#00afff"}, {"saturation": "67"}, {"lightness": "57"}]}]},
+                mapElement_VF = document.getElementById('map_small'),
+                map_VF = new google.maps.Map(mapElement_VF, mapOptions),
+                LatLng_VF = {lat: success.location.lat, lng: success.location.lng},
+                image_VF = {url: "https://cdn4.iconfinder.com/data/icons/peppyicons/512/660011-location-512.png", scaledSize: new google.maps.Size(50, 50)},
+                marker_VF = new google.maps.Marker({position: LatLng_VF, map: map_VF, title: 'Current Location', icon: image_VF});
+
+        $('.location_input').val(' ' + success.location.lat + ' ,' + success.location.lng);
+    })
+            .fail(function (err) {
+                alert("API Geolocation error! \n\n" + err);
+                console.log(err);
+            });
+};
+
+var browserGeolocationSuccess = function (position) {
+    alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+};
+
+var browserGeolocationFail = function (error) {
+    switch (error.code) {
+        case error.TIMEOUT:
+            alert("Browser geolocation error !\n\nTimeout.");
+            break;
+        case error.PERMISSION_DENIED:
+            if (error.message.indexOf("Only secure origins are allowed") == 0) {
+                tryAPIGeolocation();
+            }
+            break;
+        case error.POSITION_UNAVAILABLE:
+            alert("Browser geolocation error !\n\nPosition unavailable.");
+            break;
+    }
+};
+
+var tryGeolocation = function () {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+                browserGeolocationSuccess,
+                browserGeolocationFail,
+                {maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
+    }
+};

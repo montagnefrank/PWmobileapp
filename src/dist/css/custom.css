@@ -42,8 +42,14 @@ Designed By: @BaymanBurton
 }
 
 
-.sliderimg{
+.vehicleImg{
     border: 2px solid coral;
     border-radius: 500px;
-    width: 90%;
+    width: 20%;
+    height: 20%;
+    margin: 12px;
+}
+
+.opa40{
+    opacity: 0.2;
 }
