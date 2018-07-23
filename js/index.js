@@ -157,6 +157,7 @@ function validateLogin(data) {
             $("#user_container h1").html('Welcome ' + data.nombresUsuario);
             console.log('login usuario exitoso');
             localStorage.setItem("userData", JSON.stringify(data.userIntel));
+            localStorage.setItem("panel", "newOrder"); // DEFAULT PANEL AFTER LOGIN
             window.location.href = "/src";
         });
     } else {
@@ -182,7 +183,6 @@ function validateReg(data) {
                 ).then(function () {
             $("#user_container h1").html('New User ' + data.user.fullname);
             console.log('login usuario exitoso');
-            localStorage.setItem("passVar", "pasaste mis bolas");
             window.location.href = "/src";
         });
     }
