@@ -507,60 +507,59 @@ $(document).ready(function () {
 
 
 ////    DEBUG LOCAL STORAGE
+/*
 //for (var key in localStorage) {
 //    console.log(key + ':' + localStorage[key]);
 //}
+    */
 
 
-// LOCATION SERVICE
-var apiGeolocationSuccess = function (position) {
-    alert("API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
-};
-
-var tryAPIGeolocation = function () {
-    jQuery.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyA_s9AhhJurXNx1UHeK_6hm6CdSB8AR14c", function (success) {
-        var mapOptions = {
-            zoom: 12,
-            scrollwheel: false,
-            center: new google.maps.LatLng(success.location.lat, success.location.lng), // QUITO
-            styles: [{"featureType": "poi", "elementType": "all", "stylers": [{"visibility": "simplified"}, {"hue": "#00afff"}, {"saturation": "100"}, {"lightness": "0"}, {"weight": "4.03"}, {"gamma": "0.50"}]},
-                {"featureType": "poi.business", "elementType": "all", "stylers": [{"visibility": "on"}, {"hue": "#00afff"}, {"weight": "0.50"}]},
-                {"featureType": "road.highway", "elementType": "all", "stylers": [{"visibility": "on"}, {"hue": "#00afff"}, {"saturation": "67"}, {"lightness": "57"}]}]},
-                mapElement_VF = document.getElementById('map_small'),
-                map_VF = new google.maps.Map(mapElement_VF, mapOptions),
-                LatLng_VF = {lat: success.location.lat, lng: success.location.lng},
-                image_VF = {url: "https://cdn4.iconfinder.com/data/icons/peppyicons/512/660011-location-512.png", scaledSize: new google.maps.Size(50, 50)},
-                marker_VF = new google.maps.Marker({position: LatLng_VF, map: map_VF, title: 'Current Location', icon: image_VF});
-
-        $('.location_input').val(' ' + success.location.lat + ' ,' + success.location.lng);
-    })
-            .fail(function (err) {
-                alert("API Geolocation error! \n\n" + err);
-                console.log(err);
-            });
-};
-
-var browserGeolocationSuccess = function (position) {
-    alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
-};
-
-var browserGeolocationFail = function (error) {
-    switch (error.code) {
-        case error.TIMEOUT:
-            alert("Browser geolocation error !\n\nTimeout.");
-            break;
-        case error.PERMISSION_DENIED:
-            if (error.message.indexOf("Only secure origins are allowed") == 0) {
-                tryAPIGeolocation();
-            }
-            break;
-        case error.POSITION_UNAVAILABLE:
-            alert("Browser geolocation error !\n\nPosition unavailable.");
-            break;
-    }
-};
-
-var tryGeolocation = function () {
+//// LOCATION SERVICE
+/*
+//var apiGeolocationSuccess = function (position) {
+//    alert("API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+//};
+//var tryAPIGeolocation = function () {
+//    jQuery.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCa1LUe1vOczX1hO_iGYgyo8p_jYuGOPU", function (success) {
+//        var mapOptions = {
+//            zoom: 12,
+//            scrollwheel: false,
+//            center: new google.maps.LatLng(success.location.lat, success.location.lng), // QUITO
+//            styles: [{"featureType": "poi", "elementType": "all", "stylers": [{"visibility": "simplified"}, {"hue": "#00afff"}, {"saturation": "100"}, {"lightness": "0"}, {"weight": "4.03"}, {"gamma": "0.50"}]},
+//                {"featureType": "poi.business", "elementType": "all", "stylers": [{"visibility": "on"}, {"hue": "#00afff"}, {"weight": "0.50"}]},
+//                {"featureType": "road.highway", "elementType": "all", "stylers": [{"visibility": "on"}, {"hue": "#00afff"}, {"saturation": "67"}, {"lightness": "57"}]}]},
+//                mapElement_VF = document.getElementById('map_small'),
+//                map_VF = new google.maps.Map(mapElement_VF, mapOptions),
+//                LatLng_VF = {lat: success.location.lat, lng: success.location.lng},
+//                image_VF = {url: "https://cdn4.iconfinder.com/data/icons/peppyicons/512/660011-location-512.png", scaledSize: new google.maps.Size(50, 50)},
+//                marker_VF = new google.maps.Marker({position: LatLng_VF, map: map_VF, title: 'Current Location', icon: image_VF});
+//
+//        $('.location_input').val(' ' + success.location.lat + ' ,' + success.location.lng);
+//    })
+//            .fail(function (err) {
+//                alert("API Geolocation error! \n\n" + err);
+//                console.log(err);
+//            });
+//};
+//var browserGeolocationSuccess = function (position) {
+//    alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+//};
+//var browserGeolocationFail = function (error) {
+//    switch (error.code) {
+//        case error.TIMEOUT:
+//            alert("Browser geolocation error !\n\nTimeout.");
+//            break;
+//        case error.PERMISSION_DENIED:
+//            if (error.message.indexOf("Only secure origins are allowed") == 0) {
+//                tryAPIGeolocation();
+//            }
+//            break;
+//        case error.POSITION_UNAVAILABLE:
+//            alert("Browser geolocation error !\n\nPosition unavailable.");
+//            break;
+//    }
+//};
+//var tryGeolocation = function () {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
                 browserGeolocationSuccess,
@@ -568,3 +567,9 @@ var tryGeolocation = function () {
                 {maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
     }
 };
+*/
+
+// TEST
+if (navigator.geolocation) {
+    console.log('aceptado');
+}
