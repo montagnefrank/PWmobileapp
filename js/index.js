@@ -159,6 +159,7 @@ function validateLogin(data) {
             localStorage.setItem("userData", JSON.stringify(data.userIntel));
             localStorage.setItem("panel", "newOrder"); // DEFAULT PANEL AFTER LOGIN
             window.location.href = "src/index.html";
+            return false;
         });
     } else {
         $.when(
